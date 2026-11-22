@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO 核心标签：建议包含中英文姓名、单位和核心研究方向 -->
+  <title>姓名 (First Last) - 职称 | 单位名称 &amp; 课题组名称</title>
+  <meta name="description" content="姓名，单位名称教师，课题组名称负责人。主要研究方向包括计算材料学、轻质合金设计、多尺度模拟与材料信息学等。" />
+  <meta name="keywords" content="姓名, First Last, 课题组名称, 计算材料, 材料热力学, 合金设计, 学术主页" />
+
+  <!-- 搜索引擎抓取控制 -->
+  <meta name="robots" content="index, follow" />
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --accent: #1d4ed8;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    header {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 6px; }
+    .subtitle { color: var(--muted); font-size: 1rem; margin-bottom: 14px; }
+    .links a {
+      display: inline-block;
+      margin-right: 16px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .links a:hover { text-decoration: underline; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    .pub-item { margin-bottom: 12px; }
+    .pub-title { font-weight: 600; }
+    .pub-meta { color: var(--muted); font-size: 0.92rem; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 12px 0 28px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>姓名 <span style="font-size:1.1rem;font-weight:400;color:var(--muted);">First Last</span></h1>
+      <div class="subtitle">职称 · 学院/系名称 · 学校/机构名称 · 课题组名称负责人</div>
+      <p>
+        欢迎访问我的个人与课题组学术主页。我们聚焦于……（用 2~3 句话概括核心研究方向、方法特色与招生/合作需求）。
+      </p>
+      <div class="links" style="margin-top: 14px;">
+        <a href="mailto:your-email@example.edu.cn">邮箱</a>
+        <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://github.com/你的用户名" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>研究方向 Research Interests</h2>
+      <ul>
+        <li><strong>方向一：</strong>简要说明研究内容与目标。</li>
+        <li><strong>方向二：</strong>简要说明研究内容与目标。</li>
+        <li><strong>方向三：</strong>简要说明研究内容与目标。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>代表性论文 Selected Publications</h2>
+      <div class="pub-item">
+        <div class="pub-title">论文标题 1（Full Paper Title）</div>
+        <div class="pub-meta">作者列表. <em>期刊名称</em>, 年份, 卷(期): 页码.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-title">论文标题 2（Full Paper Title）</div>
+        <div class="pub-meta">作者列表. <em>期刊名称</em>, 年份, 卷(期): 页码.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>招生与合作 Recruitment &amp; Collaboration</h2>
+      <p>
+        课题组长期招收对计算材料、数据驱动设计、实验表征或新能源/轻质合金方向感兴趣的本科生、研究生及访问学生。欢迎对相关方向有热情的同学通过邮件联系附简历说明。
+      </p>
+    </section>
+
+    <footer>
+      © <span id="year">2026</span> 姓名 · 保留所有权利
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
