@@ -345,7 +345,7 @@
   <footer>
     <div class="footer-inner">
       <div>© 2026 AI4ICME Group</div>
-      <div class="counter-box" title="Page visit counter stored in browser localStorage">
+      <div class="counter-box" title="Global page views, synced across devices">
         <span>Page Visits:</span>
         <strong id="visit-count">1</strong>
       </div>
@@ -383,18 +383,38 @@
       const initialHash = (window.location.hash || "").replace(/^#/, "");
       activateTab(initialHash || "group", false);
 
-      const storageKey = "ai4icme_group_visits_v1";
-      let count = 1;
-      try {
-        const current = parseInt(localStorage.getItem(storageKey) || "0", 10);
-        count = (Number.isNaN(current) ? 0 : current) + 1;
-        localStorage.setItem(storageKey, String(count));
-      } catch (e) {
-        count = 1;
-      }
-      const el = document.getElementById("visit-count");
-      if (el) el.textContent = String(count);
-    })();
+      /* 访问统计已改为全局同步计数 */
+})();
   </script>
 
-</body></html>
+<script>(function () {
+  var el = document.getElementById("visit-count");
+  if (!el) return;
+  var NS = "ai4icme-group", KEY = "home";
+  var CACHE = "ai4icme_visit_cache", SESS = "ai4icme_visit_session";
+  function cached() { try { var n = parseInt(localStorage.getItem(CACHE) || "0", 10); return Number.isNaN(n) || n < 1 ? 1 : n; } catch (e) { return 1; } }
+  function render(n) { if (typeof n === "number" && n > 0) el.textContent = n.toLocaleString("en-US"); }
+  function save(n) { try { localStorage.setItem(CACHE, String(n)); } catch (e) {} }
+  function fallback() { render(cached()); }
+  var counted = false;
+  try { counted = sessionStorage.getItem(SESS) === "1"; } catch (e) {}
+  var action = counted ? "get" : "hit";
+  function markCounted() { try { sessionStorage.setItem(SESS, "1"); } catch (e) {} }
+  fetch("https://abacus.jasoncameron.dev/" + action + "/" + NS + "/" + KEY, { cache: "no-store" })
+    .then(function (r) { if (!r.ok) throw new Error("bad"); return r.json(); })
+    .then(function (d) {
+      if (d && typeof d.value === "number" && d.value > 0) { render(d.value); save(d.value); if (action === "hit") markCounted(); }
+      else throw new Error("bad");
+    })
+    .catch(function () {
+      fetch("https://api.counterapi.dev/v1/" + NS + "/" + KEY + (action === "hit" ? "/up" : "/"), { cache: "no-store" })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          var v = 0;
+          if (d) { if (typeof d.count === "number") v = d.count; else if (typeof d.value === "number") v = d.value; }
+          if (v > 0) { render(v); save(v); if (action === "hit") markCounted(); }
+          else fallback();
+        })
+        .catch(fallback);
+    });
+})();</script></body></html>
