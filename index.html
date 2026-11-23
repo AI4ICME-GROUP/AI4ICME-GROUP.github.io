@@ -1,132 +1,413 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO 核心标签：建议包含中英文姓名、单位和核心研究方向 -->
-  <title>姓名 (First Last) - 职称 | 单位名称 &amp; 课题组名称</title>
-  <meta name="description" content="姓名，单位名称教师，课题组名称负责人。主要研究方向包括计算材料学、轻质合金设计、多尺度模拟与材料信息学等。" />
-  <meta name="keywords" content="姓名, First Last, 课题组名称, 计算材料, 材料热力学, 合金设计, 学术主页" />
-
-  <!-- 搜索引擎抓取控制 -->
-  <meta name="robots" content="index, follow" />
-
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI for Integrated Computational Materials Engineering (AI4ICME) is a research group in the Department of Materials Science and Engineering, dedicated to acceler">
+  <title>AI4ICME Group — Materials Science &amp; Engineering</title>
   <style>
     :root {
-      --bg: #f8fafc;
-      --card: #ffffff;
+      --bg: #ffffff;
+      --surface: #f8fafc;
       --text: #1e293b;
       --muted: #64748b;
-      --accent: #1d4ed8;
       --border: #e2e8f0;
+      --accent: #003262;
+      --accent-soft: #eef4fa;
+      --max-w: 940px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * { box-sizing: border-box; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      background: var(--bg);
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background-color: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.65;
+      font-size: 16px;
     }
-    .container {
-      max-width: 860px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+
     header {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px;
-      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      background-color: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 20;
     }
-    h1 { font-size: 1.8rem; margin-bottom: 6px; }
-    .subtitle { color: var(--muted); font-size: 1rem; margin-bottom: 14px; }
-    .links a {
-      display: inline-block;
-      margin-right: 16px;
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1.08rem;
       color: var(--accent);
-      text-decoration: none;
-      font-size: 0.95rem;
+      cursor: pointer;
+      letter-spacing: 0.2px;
+      text-align: left;
     }
-    .links a:hover { text-decoration: underline; }
-    section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 28px;
-      margin-bottom: 20px;
+
+    nav[aria-label="Primary Topics"] {
+      display: flex;
+      gap: 6px 14px;
+      flex-wrap: wrap;
+      align-items: center;
     }
-    h2 {
-      font-size: 1.25rem;
-      margin-bottom: 14px;
-      padding-bottom: 8px;
+
+    .nav-tab {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 6px 4px;
+      font-family: inherit;
+      font-size: 0.93rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .nav-tab:hover { color: var(--accent); }
+    .nav-tab.active {
+      color: var(--accent);
+      font-weight: 650;
+      border-bottom-color: var(--accent);
+    }
+
+    main {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 36px 24px 56px;
+      min-height: 62vh;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .page-header {
+      padding-bottom: 22px;
+      margin-bottom: 26px;
       border-bottom: 1px solid var(--border);
     }
-    ul { padding-left: 20px; }
-    li { margin-bottom: 8px; }
-    .pub-item { margin-bottom: 12px; }
-    .pub-title { font-weight: 600; }
-    .pub-meta { color: var(--muted); font-size: 0.92rem; }
-    footer {
-      text-align: center;
+
+    .profile-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.9rem;
+      line-height: 1.25;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .role-badge {
+      font-size: 0.94rem;
       color: var(--muted);
-      font-size: 0.88rem;
-      padding: 12px 0 28px;
+      font-weight: 500;
+    }
+
+    h2 {
+      margin: 26px 0 12px;
+      font-size: 1.22rem;
+      color: var(--accent);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 650;
+    }
+
+    h2:first-child { margin-top: 0; }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 8px 0 18px; padding-left: 22px; }
+    li { margin-bottom: 8px; }
+    .muted-note { font-size: 0.9rem; color: var(--muted); }
+
+    .banner-photo-wrap {
+      margin-top: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .banner-photo-wrap img {
+      display: block;
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+
+    .card-title {
+      font-weight: 650;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .card-meta {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .item-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 8px 20px;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .item-row:last-child { border-bottom: none; }
+    .item-date { color: var(--muted); font-size: 0.9rem; font-weight: 500; }
+    .pub-list li { margin-bottom: 10px; font-size: 0.95rem; }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 20px 24px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .counter-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 0.86rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      .item-row { grid-template-columns: 1fr; }
+      h1 { font-size: 1.65rem; }
     }
   </style>
-</head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ResearchOrganization","name":"AI4ICME Group","description":"AI for Integrated Computational Materials Engineering (AI4ICME) is a research group in the Department of Materials Science and Engineering, dedicated to accelerating materials discovery and design through artificial intelligence and multiscale modeling.","email":"renhai.shi.nick@gmail.com","employee":{"@type":"Person","name":"R, Ph.D.","jobTitle":"Associate Researcher"}}</script></head>
 <body>
-  <div class="container">
-    <header>
-      <h1>姓名 <span style="font-size:1.1rem;font-weight:400;color:var(--muted);">First Last</span></h1>
-      <div class="subtitle">职称 · 学院/系名称 · 学校/机构名称 · 课题组名称负责人</div>
-      <p>
-        欢迎访问我的个人与课题组学术主页。我们聚焦于……（用 2~3 句话概括核心研究方向、方法特色与招生/合作需求）。
-      </p>
-      <div class="links" style="margin-top: 14px;">
-        <a href="mailto:your-email@example.edu.cn">邮箱</a>
-        <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a>
-        <a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a>
-        <a href="https://github.com/你的用户名" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </header>
 
-    <section>
-      <h2>研究方向 Research Interests</h2>
-      <ul>
-        <li><strong>方向一：</strong>简要说明研究内容与目标。</li>
-        <li><strong>方向二：</strong>简要说明研究内容与目标。</li>
-        <li><strong>方向三：</strong>简要说明研究内容与目标。</li>
-      </ul>
+  <header>
+    <div class="nav-inner">
+      <button type="button" class="brand-btn" data-tab="group">AI4ICME Group</button>
+      <nav aria-label="Primary Topics">
+        <button type="button" class="nav-tab active" data-tab="group">AI4ICME Group</button>
+        <button type="button" class="nav-tab" data-tab="news">News</button>
+        <button type="button" class="nav-tab" data-tab="research">Research</button>
+        <button type="button" class="nav-tab" data-tab="publications">Publications</button>
+        <button type="button" class="nav-tab" data-tab="courses">Courses</button>
+        <button type="button" class="nav-tab" data-tab="people">People</button>
+        <button type="button" class="nav-tab" data-tab="software">Software</button>
+        <button type="button" class="nav-tab" data-tab="openings">Openings</button>
+        <button type="button" class="nav-tab" data-tab="contact">Contact Us</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="tab-group" class="tab-panel active" aria-labelledby="title-group">
+      <div class="page-header">
+        <div class="profile-title-row">
+          <h1 id="title-group">AI4ICME Group</h1>
+          <span id="group-affiliation-badge" class="role-badge">University of Science and Technology</span>
+        </div>
+        <p id="group-subtitle" style="margin-bottom: 0;">AI for Integrated Computational Materials Engineering (AI4ICME) is a research group in the Department of Materials Science and Engineering, dedicated to accelerating materials discovery and design through artificial intelligence and multiscale modeling.</p>
+        <div id="group-photo-container" class="banner-photo-wrap" style="display: none;">
+          <img id="group-photo-img" alt="AI4ICME Group Highlight">
+        </div>
+      </div>
+
+      <h2>About the Group</h2>
+      <p id="group-about-text">The AI4ICME Group explores alloying–processing–structure–properties relationships across structural and energy materials by integrating physics-based simulations—such as CALPHAD, DFT, AIMD, Monte Carlo, and Molecular Dynamics—with Machine Learning, High-Throughput Screening, and experimental validation.</p>
+
+      <h2>General Research Themes</h2>
+      <div id="group-themes-grid" class="grid-2"><div class="card"><div class="card-title">Microstructure &amp; Mechanical Behavior</div><p style="font-size: 0.93rem; margin-bottom: 0px;">Phase transformation, precipitation and dissolution kinetics, interfacial segregation, deformation mechanisms, and multiscale modeling of metallic materials.</p></div><div class="card"><div class="card-title">Lightweight &amp; High-Performance Alloys</div><p style="font-size: 0.93rem; margin-bottom: 0px;">Computational and data-driven design of magnesium alloys, copper alloys, superalloys, high-entropy alloy coatings, and titanium alloys.</p></div><div class="card"><div class="card-title">Thermal Energy Storage &amp; Solid-State Refrigeration</div><p style="font-size: 0.93rem; margin-bottom: 0px;">Thermodynamic modeling, high-throughput screening, and machine learning for phase change materials, barocaloric refrigeration, and thermal energy storage.</p></div><div class="card"><div class="card-title">Hydrogen Capture &amp; Storage</div><p style="font-size: 0.93rem; margin-bottom: 0px;">Screening and thermodynamic/machine-learning design of metal hydrides and energy materials for efficient hydrogen storage and conversion.</p></div></div>
     </section>
 
-    <section>
-      <h2>代表性论文 Selected Publications</h2>
-      <div class="pub-item">
-        <div class="pub-title">论文标题 1（Full Paper Title）</div>
-        <div class="pub-meta">作者列表. <em>期刊名称</em>, 年份, 卷(期): 页码.</div>
+    <section id="tab-news" class="tab-panel" aria-labelledby="title-news">
+      <div class="page-header">
+        <h1 id="title-news">News</h1>
+        <p class="muted-note" style="margin-bottom: 0;">Recent highlights, milestones, and talks from the AI4ICME Group.</p>
       </div>
-      <div class="pub-item">
-        <div class="pub-title">论文标题 2（Full Paper Title）</div>
-        <div class="pub-meta">作者列表. <em>期刊名称</em>, 年份, 卷(期): 页码.</div>
-      </div>
+      <div id="news-list"></div>
     </section>
 
-    <section>
-      <h2>招生与合作 Recruitment &amp; Collaboration</h2>
-      <p>
-        课题组长期招收对计算材料、数据驱动设计、实验表征或新能源/轻质合金方向感兴趣的本科生、研究生及访问学生。欢迎对相关方向有热情的同学通过邮件联系附简历说明。
-      </p>
+    <section id="tab-research" class="tab-panel" aria-labelledby="title-research">
+      <div class="page-header">
+        <h1 id="title-research">Research</h1>
+        <p id="research-lead" class="muted-note" style="margin-bottom: 0;">Integrated experimental, theoretical, and computational materials engineering (CALPHAD, DFT, AIMD, Monte Carlo, Molecular Dynamics, Machine Learning, High-Throughput Screening).</p>
+      </div>
+      <div id="research-grid" class="grid-2"><div class="card"><div class="card-title">Microstructural &amp; Mechanical Properties</div><p style="font-size: 0.93rem; margin-bottom: 0px;">Nucleation and growth of intermetallic phases; grain boundary segregation; deformation-induced martensitic transformation; spinodal decomposition; short-range order; twinning nucleation; texture modification; multiscale modeling of nanoparticle-reinforced metal matrix composites; and glass-forming ability.</p></div><div class="card"><div class="card-title">Hydrogen Capture &amp; Storage</div><p style="font-size: 0.93rem; margin-bottom: 0px;">Design of metal hydrides with high storage capacity and low hydrogenation enthalpy for hydrogen fuel cells via CALPHAD, machine learning, and high-throughput screening, as well as hydride formation and deformation mechanisms.</p></div><div class="card"><div class="card-title">Thermal Energy Storage &amp; Solid-State Refrigeration</div><p style="font-size: 0.93rem; margin-bottom: 0px;">Construction of CALPHAD thermodynamic databases; high-throughput screening, machine learning, and thermodynamic modeling of organic phase change materials, MOFs, metallic materials, and solid-state phase change / barocaloric refrigeration materials.</p></div><div class="card"><div class="card-title">Lightweight &amp; Structural/Functional Alloys</div><p style="font-size: 0.93rem; margin-bottom: 0px;">Alloy design and multiscale simulation for high-formability/high-strength magnesium alloys, marine and high-temperature oxidation-resistant copper alloys, Ni–Cr–Nb and GH4169D superalloys, high-entropy alloy coatings, and β-titanium alloys.</p></div></div>
     </section>
 
-    <footer>
-      © <span id="year">2026</span> 姓名 · 保留所有权利
-    </footer>
-  </div>
+    <section id="tab-publications" class="tab-panel" aria-labelledby="title-publications">
+      <div class="page-header">
+        <h1 id="title-publications">Publications</h1>
+        <p class="muted-note" style="margin-bottom: 0;">Selected peer-reviewed journal articles and patents (* corresponding author, # equal contribution).</p>
+      </div>
+      <h2>First or Corresponding Author</h2>
+      <ol id="pub-first-list" class="pub-list"></ol>
+      <h2>Co-Author</h2>
+      <ol id="pub-co-list" class="pub-list"></ol>
+      <h2>Patents</h2>
+      <ul id="pub-patent-list"></ul>
+    </section>
+
+    <section id="tab-courses" class="tab-panel" aria-labelledby="title-courses">
+      <div class="page-header">
+        <h1 id="title-courses">Courses</h1>
+        <p class="muted-note" style="margin-bottom: 0;">Teaching and curriculum development in materials science, thermodynamics, and AI-enabled materials design.</p>
+      </div>
+      <div id="courses-grid" class="grid-2"></div>
+    </section>
+
+    <section id="tab-people" class="tab-panel" aria-labelledby="title-people">
+      <div class="page-header">
+        <h1 id="title-people">People</h1>
+        <p class="muted-note" style="margin-bottom: 0;">Group leadership and members of the AI4ICME Group.</p>
+      </div>
+      <h2>Group Leader</h2>
+      <div id="people-leader-card" class="card" style="margin-bottom: 18px;">
+        <div class="card-title">R, Ph.D.</div>
+        <div class="card-meta">Associate Researcher</div>
+        <p style="font-size: 0.93rem; margin-bottom: 0;">Ph.D. in Materials Science and Engineering,</p>
+      </div>
+      <h2>Group Members</h2>
+      <div id="people-members-container"></div>
+    </section>
+
+    <section id="tab-software" class="tab-panel" aria-labelledby="title-software">
+      <div class="page-header">
+        <h1 id="title-software">Software</h1>
+        <p class="muted-note" style="margin-bottom: 0;">Computational workflows, thermodynamic/kinetic databases, and machine-learning tools for ICME.</p>
+      </div>
+      <div id="software-grid" class="grid-2"><div class="card"><div class="card-title">CALPHAD &amp; Phase Transformation Workflows</div><div class="card-meta">Thermodynamics · Mobility · Phase Equilibria</div><p style="font-size: 0.93rem; margin-bottom: 0px;">Thermodynamic and atomic mobility assessment workflows and database modules for lightweight Mg/Al alloys, Cu alloys, multicomponent melts, and solid-state thermal energy storage / organic phase change materials.</p></div><div class="card"><div class="card-title">AI4ICME Alloy &amp; Property Prediction Tools</div><div class="card-meta">Machine Learning · High-Throughput Screening · Multiscale Modeling</div><p style="font-size: 0.93rem; margin-bottom: 0px;">Data-driven composition-to-property models and high-throughput screening pipelines for barocaloric and phase-change materials, β-titanium alloys, Ni–Cr–Nb master alloys, and hydrogen storage hydrides.</p></div></div>
+    </section>
+
+    <section id="tab-openings" class="tab-panel" aria-labelledby="title-openings">
+      <div class="page-header">
+        <h1 id="title-openings">Openings</h1>
+        <p class="muted-note" style="margin-bottom: 0;">Opportunities for students and researchers interested in AI4ICME and materials science.</p>
+      </div>
+      <p id="openings-intro">The AI4ICME Group welcomes inquiries from prospective graduate students, undergraduate research interns, and collaborators with backgrounds in Materials Science and Engineering, Metallurgy, Physics, Chemistry, Applied Mathematics, or Computer Science / Machine Learning.</p>
+      <h2>Focus Areas for Prospective Researchers</h2>
+      <ul id="openings-focus-list"></ul>
+      <p id="openings-apply-line">Interested applicants are invited to send a brief CV, statement of research interests, and academic transcript (if applicable) to <a id="openings-email-link" href="mailto:renhai.shi.nick@gmail.com">renhai.shi.nick@gmail.com</a>.</p>
+    </section>
+
+    <section id="tab-contact" class="tab-panel" aria-labelledby="title-contact">
+      <div class="page-header">
+        <h1 id="title-contact">Contact Us</h1>
+        <p class="muted-note" style="margin-bottom: 0;">Address, email, phone, and academic profile links.</p>
+      </div>
+      <div id="contact-details"><p><strong>Group Contact: </strong>R, Ph.D.</p><p><strong>Department: </strong>Department of Materials Science and Engineering</p><p><strong>Institution: </strong>University of Science and Technology</p><p><strong>Email: </strong><a href="mailto:renhai.shi.nick@gmail.com">renhai.shi.nick@gmail.com</a></p></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© 2026 AI4ICME Group · Fujian Fuyao University of Science and Technology</div>
+      <div class="counter-box" title="Page visit counter stored in browser localStorage">
+        <span>Page Visits:</span>
+        <strong id="visit-count">1</strong>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    (function () {
+      const validTabs = ["group", "news", "research", "publications", "courses", "people", "software", "openings", "contact"];
+      const navButtons = Array.from(document.querySelectorAll("[data-tab]"));
+      const tabButtons = Array.from(document.querySelectorAll("nav .nav-tab"));
+      const panels = Array.from(document.querySelectorAll(".tab-panel"));
+
+      function activateTab(tabName, updateHash) {
+        const target = validTabs.includes(tabName) ? tabName : "group";
+        panels.forEach(function (panel) {
+          panel.classList.toggle("active", panel.id === "tab-" + target);
+        });
+        tabButtons.forEach(function (btn) {
+          btn.classList.toggle("active", btn.getAttribute("data-tab") === target);
+        });
+        if (updateHash) {
+          try { history.replaceState(null, "", "#" + target); }
+          catch (e) { window.location.hash = target; }
+        }
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }
+
+      navButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          activateTab(btn.getAttribute("data-tab"), true);
+        });
+      });
+
+      const initialHash = (window.location.hash || "").replace(/^#/, "");
+      activateTab(initialHash || "group", false);
+
+      const storageKey = "ai4icme_group_visits_v1";
+      let count = 1;
+      try {
+        const current = parseInt(localStorage.getItem(storageKey) || "0", 10);
+        count = (Number.isNaN(current) ? 0 : current) + 1;
+        localStorage.setItem(storageKey, String(count));
+      } catch (e) {
+        count = 1;
+      }
+      const el = document.getElementById("visit-count");
+      if (el) el.textContent = String(count);
+    })();
   </script>
-</body>
-</html>
+
+</body></html>
